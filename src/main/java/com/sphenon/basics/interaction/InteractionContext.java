@@ -1,7 +1,7 @@
 package com.sphenon.basics.interaction;
 
 /****************************************************************************
-  Copyright 2001-2018 Sphenon GmbH
+  Copyright 2001-2024 Sphenon GmbH
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not
   use this file except in compliance with the License. You may obtain a copy
@@ -53,9 +53,9 @@ public class InteractionContext extends SpecificContext {
     static public CallContext createMergedInteractionContext(CallContext context, Transaction transaction, Workspace workspace){
         CallContext local_context = context;
         LocationContext lc = null;
-        if( transaction instanceof Located ){
-            LocationContext super_lc = ((Located)transaction).getLocationContext(context);
-            lc =Context.create(null, super_lc);
+        if (transaction instanceof Located) {
+            LocationContext super_lc = ((Located) transaction).getLocationContext(context);
+            lc = Context.create(null, super_lc);
         } else {
             lc = com.sphenon.basics.context.classes.RootContext.createLocationContext();
         }

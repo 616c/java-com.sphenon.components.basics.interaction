@@ -1,7 +1,7 @@
 package com.sphenon.basics.interaction.classes;
 
 /****************************************************************************
-  Copyright 2001-2018 Sphenon GmbH
+  Copyright 2001-2024 Sphenon GmbH
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not
   use this file except in compliance with the License. You may obtain a copy
@@ -25,6 +25,13 @@ public class Class_Anchor {
     static public<T> T _anchor(CallContext context, T object_to_anchor, Anchor base_anchor) {
         if (object_to_anchor instanceof Anchorable && base_anchor != null) {
             object_to_anchor = ((T)(((Anchorable) object_to_anchor).createAnchor(context, base_anchor._getWorkspace(context), base_anchor._getTransaction(context))));
+        }
+        return object_to_anchor;
+    }
+
+    static public<T> T _optionallyAnchor(CallContext context, T object_to_anchor, Object base_anchor_candidate) {
+        if (base_anchor_candidate instanceof Anchor) {
+            return _anchor(context, object_to_anchor, (Anchor) base_anchor_candidate);
         }
         return object_to_anchor;
     }
